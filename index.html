@@ -120,40 +120,6 @@
       }
     }
 
-    .admin-btn {
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      background: radial-gradient(
-        circle at top,
-        rgba(255, 255, 255, 0.15),
-        rgba(5, 5, 9, 0.9)
-      );
-      color: var(--text-main);
-      padding: 6px 11px;
-      font-size: 11px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      outline: none;
-      transition: all 0.16s ease-out;
-      backdrop-filter: blur(16px);
-    }
-
-    .admin-btn span.icon {
-      font-size: 13px;
-    }
-
-    .admin-btn:hover {
-      border-color: rgba(255, 59, 107, 0.65);
-      color: #fff;
-      transform: translateY(-0.5px);
-    }
-
-    .admin-btn:active {
-      transform: translateY(0.5px) scale(0.99);
-    }
-
     .telegram-cta {
       margin-bottom: 14px;
     }
@@ -396,135 +362,6 @@
       color: #f5f5f7;
     }
 
-    /* Admin panel */
-
-    .admin-panel {
-      margin-top: 14px;
-      padding-top: 12px;
-      border-top: 1px solid rgba(255, 255, 255, 0.07);
-      display: none;
-    }
-
-    .admin-panel.visible {
-      display: block;
-    }
-
-    .admin-title {
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-    }
-
-    .admin-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-    }
-
-    @media (min-width: 768px) {
-      .admin-grid {
-        grid-template-columns: 3fr 2.4fr;
-      }
-    }
-
-    .admin-section {
-      padding: 9px;
-      border-radius: 14px;
-      background: rgba(5, 6, 13, 0.96);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      font-size: 11px;
-    }
-
-    .admin-section h3 {
-      margin: 0 0 6px;
-      font-size: 12px;
-      font-weight: 500;
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-      margin-bottom: 6px;
-    }
-
-    label {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-muted);
-    }
-
-    input,
-    select {
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(7, 8, 16, 0.96);
-      color: #f5f5f7;
-      font-size: 12px;
-      padding: 6px 10px;
-      outline: none;
-      width: 100%;
-    }
-
-    input:focus,
-    select:focus {
-      border-color: rgba(255, 59, 107, 0.85);
-    }
-
-    .checkbox-row {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-
-    .checkbox-row input {
-      width: auto;
-      accent-color: #ff3b6b;
-    }
-
-    .admin-actions {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-
-    .btn-small {
-      font-size: 11px;
-      padding: 5px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      background: rgba(10, 11, 20, 0.96);
-      color: #f5f5f7;
-      cursor: pointer;
-      transition: all 0.16s ease-out;
-    }
-
-    .btn-small.primary {
-      background: radial-gradient(
-        circle at 0 0,
-        rgba(255, 59, 107, 0.95),
-        rgba(176, 34, 255, 0.95)
-      );
-      border-color: rgba(255, 59, 107, 0.85);
-    }
-
-    .btn-small:hover {
-      transform: translateY(-0.5px);
-      border-color: rgba(255, 59, 107, 0.8);
-    }
-
-    .admin-note {
-      font-size: 10px;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-
     .footer {
       margin-top: 10px;
       font-size: 10px;
@@ -545,10 +382,6 @@
             <div class="subtitle">Мини-архив видосов для своих</div>
           </div>
         </div>
-        <button class="admin-btn" id="adminToggleBtn" type="button">
-          <span class="icon">⚙️</span>
-          <span>Админ</span>
-        </button>
       </header>
 
       <section class="telegram-cta">
@@ -569,7 +402,7 @@
       <section>
         <div class="section-label">Разделы</div>
         <div class="tabs" id="tabsContainer">
-          <!-- Вкладки будут отрисованы скриптом -->
+          <!-- Вкладки рисуются скриптом -->
         </div>
       </section>
 
@@ -578,76 +411,7 @@
           Видео раздела
         </div>
         <div class="video-list" id="videoList">
-          <!-- Видео будут отрисованы скриптом -->
-        </div>
-      </section>
-
-      <!-- Админ-панель -->
-      <section class="admin-panel" id="adminPanel">
-        <div class="admin-title">Админ-панель</div>
-        <div class="admin-grid">
-          <div class="admin-section">
-            <h3>Добавить видео</h3>
-            <div class="field">
-              <label for="sectionSelect">Раздел / учитель</label>
-              <select id="sectionSelect"></select>
-            </div>
-            <div class="field">
-              <label for="videoTitleInput">Название видео</label>
-              <input
-                id="videoTitleInput"
-                type="text"
-                placeholder="Например: Новый урок 7Б"
-              />
-            </div>
-            <div class="field">
-              <label for="videoFileInput">Файл (имя *.mp4 на сервере)</label>
-              <input
-                id="videoFileInput"
-                type="text"
-                placeholder="Например: lesson7b.mp4"
-              />
-            </div>
-            <div class="checkbox-row">
-              <input type="checkbox" id="videoDownloadable" checked />
-              <label for="videoDownloadable">Разрешить скачивание</label>
-            </div>
-            <div class="admin-actions">
-              <button class="btn-small primary" id="addVideoBtn" type="button">
-                ➕ Добавить видео
-              </button>
-            </div>
-            <div class="admin-note">
-              Важно: файл с таким именем должен лежать рядом с index.html на
-              хостинге (или в нужной папке, если укажешь путь).
-            </div>
-          </div>
-
-          <div class="admin-section">
-            <h3>Новый раздел / учитель</h3>
-            <div class="field">
-              <label for="sectionNameInput">Название раздела</label>
-              <input
-                id="sectionNameInput"
-                type="text"
-                placeholder="Например: Иван Иванович (матан)"
-              />
-            </div>
-            <div class="admin-actions">
-              <button
-                class="btn-small primary"
-                id="addSectionBtn"
-                type="button"
-              >
-                ➕ Добавить раздел
-              </button>
-            </div>
-            <div class="admin-note">
-              Новый раздел появится как отдельная вкладка сверху.
-              <br />Все изменения сохраняются в <b>localStorage</b> в твоём
-              браузере.
-            </div>
-          </div>
+          <!-- Видео рисуются скриптом -->
         </div>
       </section>
 
@@ -658,15 +422,8 @@
   </main>
 
   <script>
-    // =========================
-    //  Конфиг и состояние
-    // =========================
-
-    // SHA-256 хэш строки "03122010BaK$"
-    const ADMIN_HASH = "3033400f0ea0bed61298f33eec8b9381aec7d92aaf06c1fe4b0b3ec00244a245";
-    const STORAGE_KEY = "one06tubeData";
-
-    const defaultData = {
+    // Статические данные: разделы и видео.
+    const data = {
       sections: [
         {
           id: "geo",
@@ -676,8 +433,8 @@
             {
               id: "geo-1",
               title: "Geo.mp4",
-              file: "Geo.mp4",
-              downloadable: true,
+              file: "Geo.mp4",        // файл должен лежать рядом с index.html
+              downloadable: true,     // можно скачать
               tag: "Урок географии",
             },
           ],
@@ -690,8 +447,8 @@
             {
               id: "muz-1",
               title: "Muz.mp4",
-              file: "Muz.mp4",
-              downloadable: false,
+              file: "Muz.mp4",        // файл рядом с index.html
+              downloadable: false,    // только смотреть, без скачивания
               tag: "Музыкальный видос",
             },
           ],
@@ -700,92 +457,22 @@
       activeSectionId: "geo",
     };
 
-    let state = loadState();
-    let isAdmin = false;
-
-    // =========================
-    //  SHA-256 и проверка пароля
-    // =========================
-
-    async function sha256(str) {
-      const enc = new TextEncoder().encode(str);
-      const buf = await crypto.subtle.digest("SHA-256", enc);
-      return [...new Uint8Array(buf)]
-        .map(x => x.toString(16).padStart(2, "0"))
-        .join("");
-    }
-
-    async function checkAdminPassword() {
-      const input = prompt("Введите пароль админа:");
-      if (input === null || input === "") return false;
-      try {
-        const hash = await sha256(input);
-        return hash === ADMIN_HASH;
-      } catch (e) {
-        alert("Браузер не поддерживает проверку пароля (crypto.subtle).");
-        console.warn(e);
-        return false;
-      }
-    }
-
-    // =========================
-    //  Загрузка / сохранение
-    // =========================
-
-    function loadState() {
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (!raw) return structuredClone(defaultData);
-        const parsed = JSON.parse(raw);
-        if (!parsed.sections || !Array.isArray(parsed.sections)) {
-          return structuredClone(defaultData);
-        }
-        if (!parsed.activeSectionId) {
-          parsed.activeSectionId = parsed.sections[0]?.id ?? "geo";
-        }
-        return parsed;
-      } catch (e) {
-        console.warn("Ошибка чтения state, используем дефолт:", e);
-        return structuredClone(defaultData);
-      }
-    }
-
-    function saveState() {
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-      } catch (e) {
-        console.warn("Не удалось сохранить state:", e);
-      }
-    }
-
-    // =========================
-    //  Отрисовка интерфейса
-    // =========================
+    let activeSectionId = data.activeSectionId;
 
     const tabsContainer = document.getElementById("tabsContainer");
     const videoList = document.getElementById("videoList");
     const currentSectionLabel = document.getElementById("currentSectionLabel");
-    const adminPanel = document.getElementById("adminPanel");
-    const adminToggleBtn = document.getElementById("adminToggleBtn");
-
-    const sectionSelect = document.getElementById("sectionSelect");
-    const videoTitleInput = document.getElementById("videoTitleInput");
-    const videoFileInput = document.getElementById("videoFileInput");
-    const videoDownloadable = document.getElementById("videoDownloadable");
-    const addVideoBtn = document.getElementById("addVideoBtn");
-    const sectionNameInput = document.getElementById("sectionNameInput");
-    const addSectionBtn = document.getElementById("addSectionBtn");
 
     function renderTabs() {
       tabsContainer.innerHTML = "";
-      state.sections.forEach((section) => {
+      data.sections.forEach((section) => {
         const btn = document.createElement("button");
-        btn.className = "tab-btn" + (section.id === state.activeSectionId ? " active" : "");
+        btn.className =
+          "tab-btn" + (section.id === activeSectionId ? " active" : "");
         btn.textContent = section.title;
         btn.type = "button";
         btn.addEventListener("click", () => {
-          state.activeSectionId = section.id;
-          saveState();
+          activeSectionId = section.id;
           renderTabs();
           renderVideos();
         });
@@ -795,12 +482,12 @@
 
     function renderVideos() {
       const section =
-        state.sections.find((s) => s.id === state.activeSectionId) ||
-        state.sections[0];
+        data.sections.find((s) => s.id === activeSectionId) ||
+        data.sections[0];
 
       if (!section) {
         videoList.innerHTML =
-          '<div class="empty-state">Нет разделов. Зайди в <b>админ-панель</b> и создай первый раздел.</div>';
+          '<div class="empty-state">Нет разделов.</div>';
         currentSectionLabel.textContent = "Видео раздела";
         return;
       }
@@ -811,8 +498,7 @@
       if (!section.videos || section.videos.length === 0) {
         const empty = document.createElement("div");
         empty.className = "empty-state";
-        empty.innerHTML =
-          "В этом разделе пока нет роликов. Добавь видео через <b>админ-панель</b>.";
+        empty.innerHTML = "В этом разделе пока нет роликов.";
         videoList.appendChild(empty);
         return;
       }
@@ -893,137 +579,9 @@
       });
     }
 
-    function renderSectionSelect() {
-      sectionSelect.innerHTML = "";
-      state.sections.forEach((section) => {
-        const opt = document.createElement("option");
-        opt.value = section.id;
-        opt.textContent = section.title;
-        sectionSelect.appendChild(opt);
-      });
-      if (state.activeSectionId) {
-        sectionSelect.value = state.activeSectionId;
-      }
-    }
-
-    // =========================
-    //  Логика админа
-    // =========================
-
-    async function toggleAdminPanel() {
-      if (!isAdmin) {
-        const ok = await checkAdminPassword();
-        if (!ok) {
-          alert("Неверный пароль 🤨");
-          return;
-        }
-        isAdmin = true;
-        adminPanel.classList.add("visible");
-        adminToggleBtn.innerHTML = '<span class="icon">✅</span><span>Админ</span>';
-      } else {
-        adminPanel.classList.toggle("visible");
-      }
-    }
-
-    function slugify(str) {
-      return str
-        .toString()
-        .trim()
-        .toLowerCase()
-        .replace(/\s+/g, "-")
-        .replace(/[^a-z0-9\-а-яё]/g, "")
-        .replace(/-+/g, "-")
-        .slice(0, 24);
-    }
-
-    function handleAddSection() {
-      const name = sectionNameInput.value.trim();
-      if (!name) {
-        alert("Введи название раздела / учителя.");
-        return;
-      }
-      const idBase = slugify(name) || "sec";
-      let id = idBase;
-      let counter = 2;
-      while (state.sections.some((s) => s.id === id)) {
-        id = `${idBase}-${counter++}`;
-      }
-
-      state.sections.push({
-        id,
-        title: name,
-        meta: "Пользовательский раздел",
-        videos: [],
-      });
-
-      state.activeSectionId = id;
-      saveState();
-
-      sectionNameInput.value = "";
-      renderTabs();
-      renderVideos();
-      renderSectionSelect();
-    }
-
-    function handleAddVideo() {
-      const sectionId = sectionSelect.value;
-      const title = videoTitleInput.value.trim();
-      const file = videoFileInput.value.trim();
-
-      if (!sectionId) {
-        alert("Выбери раздел.");
-        return;
-      }
-      if (!title) {
-        alert("Введи название видео.");
-        return;
-      }
-      if (!file) {
-        alert("Введи имя файла (например, myvideo.mp4).");
-        return;
-      }
-
-      const section = state.sections.find((s) => s.id === sectionId);
-      if (!section) {
-        alert("Раздел не найден.");
-        return;
-      }
-
-      const vidId = `${section.id}-${(section.videos?.length || 0) + 1}`;
-      const downloadable = videoDownloadable.checked;
-
-      section.videos = section.videos || [];
-      section.videos.push({
-        id: vidId,
-        title,
-        file,
-        downloadable,
-        tag: "Пользовательское видео",
-      });
-
-      state.activeSectionId = section.id;
-      saveState();
-
-      videoTitleInput.value = "";
-      videoFileInput.value = "";
-      videoDownloadable.checked = true;
-
-      renderTabs();
-      renderVideos();
-      renderSectionSelect();
-    }
-
-    // =========================
-    //  Инициализация
-    // =========================
-
-    adminToggleBtn.addEventListener("click", toggleAdminPanel);
-    addSectionBtn.addEventListener("click", handleAddSection);
-    addVideoBtn.addEventListener("click", handleAddVideo);
-
+    // Инициализация
     renderTabs();
     renderVideos();
-    renderSectionSelect();
   </script>
 </body>
 </html>
