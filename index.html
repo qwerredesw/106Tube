@@ -652,8 +652,7 @@
       </section>
 
       <div class="footer">
-        106Tube · чисто школьный Netflix. Данные админа хранятся только у тебя
-        в браузере.
+        106Tube · 2025
       </div>
     </section>
   </main>
@@ -663,7 +662,8 @@
     //  Конфиг и состояние
     // =========================
 
-    const ADMIN_PASSWORD = "03122010BaK$";
+    // SHA-256 хэш строки "03122010BaK$"
+    const ADMIN_HASH = "3033400f0ea0bed61298f33eec8b9381aec7d92aaf06c1fe4b0b3ec00244a245";
     const STORAGE_KEY = "one06tubeData";
 
     const defaultData = {
@@ -704,6 +704,31 @@
     let isAdmin = false;
 
     // =========================
+    //  SHA-256 и проверка пароля
+    // =========================
+
+    async function sha256(str) {
+      const enc = new TextEncoder().encode(str);
+      const buf = await crypto.subtle.digest("SHA-256", enc);
+      return [...new Uint8Array(buf)]
+        .map(x => x.toString(16).padStart(2, "0"))
+        .join("");
+    }
+
+    async function checkAdminPassword() {
+      const input = prompt("Введите пароль админа:");
+      if (input === null || input === "") return false;
+      try {
+        const hash = await sha256(input);
+        return hash === ADMIN_HASH;
+      } catch (e) {
+        alert("Браузер не поддерживает проверку пароля (crypto.subtle).");
+        console.warn(e);
+        return false;
+      }
+    }
+
+    // =========================
     //  Загрузка / сохранение
     // =========================
 
@@ -712,7 +737,6 @@
         const raw = localStorage.getItem(STORAGE_KEY);
         if (!raw) return structuredClone(defaultData);
         const parsed = JSON.parse(raw);
-        // Мини-проверка структуры
         if (!parsed.sections || !Array.isArray(parsed.sections)) {
           return structuredClone(defaultData);
         }
@@ -886,17 +910,16 @@
     //  Логика админа
     // =========================
 
-    function toggleAdminPanel() {
+    async function toggleAdminPanel() {
       if (!isAdmin) {
-        const input = prompt("Введите пароль админа:");
-        if (input === null) return;
-        if (input === ADMIN_PASSWORD) {
-          isAdmin = true;
-          adminPanel.classList.add("visible");
-          adminToggleBtn.innerHTML = '<span class="icon">✅</span><span>Админ</span>';
-        } else {
+        const ok = await checkAdminPassword();
+        if (!ok) {
           alert("Неверный пароль 🤨");
+          return;
         }
+        isAdmin = true;
+        adminPanel.classList.add("visible");
+        adminToggleBtn.innerHTML = '<span class="icon">✅</span><span>Админ</span>';
       } else {
         adminPanel.classList.toggle("visible");
       }
